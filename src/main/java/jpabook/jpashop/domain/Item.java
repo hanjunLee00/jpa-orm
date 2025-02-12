@@ -5,10 +5,15 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
-public class Item {
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn
+public abstract class Item extends BaseEntity {
 
     @Id
     @GeneratedValue
@@ -17,7 +22,10 @@ public class Item {
 
     private String name;
 
+    private int stockQuantity;
+
     private int price;
 
-    private int stockQuantity;
+    @ManyToMany(mappedBy = "items")
+    private List<Category> categories = new ArrayList<>();
 }

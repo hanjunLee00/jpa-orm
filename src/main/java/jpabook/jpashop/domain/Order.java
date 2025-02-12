@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name = "ORDERS")
-public class Order {
+public class Order extends BaseEntity {
 
     @Id @GeneratedValue
     @Column(name = "ORDER_ID")
@@ -29,6 +29,10 @@ public class Order {
 
     @OneToMany(mappedBy = "order")
     private List<OrderItem> orderItems = new ArrayList<>();
+
+    @OneToOne
+    @JoinColumn(name  = "DELIVERY_ID")
+    private Delivery delivery;
 
     public void addOrderItem(OrderItem orderItem) {
         orderItems.add(orderItem);
