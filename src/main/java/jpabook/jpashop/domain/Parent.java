@@ -11,6 +11,7 @@ import java.util.List;
 @Setter
 @Getter
 public class Parent {
+
     @Id
     @GeneratedValue
     private Long id;
